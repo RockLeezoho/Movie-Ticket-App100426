@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -18,9 +19,14 @@ import com.example.movie_ticket_app.R;
 import com.example.movie_ticket_app.adapters.MovieAdapter;
 import com.example.movie_ticket_app.data.FirebasePaths;
 import com.example.movie_ticket_app.data.FirebaseDb;
+import com.example.movie_ticket_app.data.SampleDataSeeder;
 import com.example.movie_ticket_app.models.Movie;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,6 +36,7 @@ public class MoviesFragment extends Fragment {
     private final List<Movie> movieList = new ArrayList<>();
     private MovieAdapter adapter;
     private TextView emptyState;
+    private boolean hasSeedRetried;
 
     @Nullable
     @Override
@@ -58,11 +65,29 @@ public class MoviesFragment extends Fragment {
     }
 
     private void loadMovies() {
-        FirebaseDb.getRootReference()
-                .child(FirebasePaths.MOVIES)
-                .get()
-                .addOnSuccessListener(this::bindMovies)
-                .addOnFailureListener(e -> emptyState.setVisibility(View.VISIBLE));
+        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+        if (currentUser == null) {
+            emptyState.setText("Vui lòng đăng nhập để xem danh sách phim.");
+            emptyState.setVisibility(View.VISIBLE);
+            return;
+        }
+
+        currentUser.getIdToken(true).addOnCompleteListener(tokenTask ->
+                FirebaseDb.getRootReference()
+                        .child(FirebasePaths.MOVIES)
+                        .addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                bindMovies(snapshot);
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError error) {
+                                emptyState.setText("Không thể tải danh sách phim.");
+                                emptyState.setVisibility(View.VISIBLE);
+                                Toast.makeText(getContext(), "Không thể tải danh sách phim.", Toast.LENGTH_SHORT).show();
+                            }
+                        }));
     }
 
     private void bindMovies(DataSnapshot snapshot) {
@@ -72,6 +97,14 @@ public class MoviesFragment extends Fragment {
             if (movie != null) {
                 movieList.add(movie);
             }
+        }
+
+        if (movieList.isEmpty() && !hasSeedRetried) {
+            hasSeedRetried = true;
+            emptyState.setText("Đang tạo lại dữ liệu phim mẫu...");
+            emptyState.setVisibility(View.VISIBLE);
+            SampleDataSeeder.seedIfNeeded(this::loadMovies);
+            return;
         }
 
         adapter.notifyDataSetChanged();
