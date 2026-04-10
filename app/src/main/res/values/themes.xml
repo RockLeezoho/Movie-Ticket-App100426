@@ -1,0 +1,34 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <style name="Base.Theme.MovieTicketApp" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/movie_primary</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorPrimaryContainer">@color/movie_primary_container</item>
+        <item name="colorOnPrimaryContainer">@color/movie_on_surface</item>
+        <item name="colorSecondary">@color/movie_secondary</item>
+        <item name="colorOnSecondary">@color/white</item>
+        <item name="colorSurface">@color/movie_surface</item>
+        <item name="colorOnSurface">@color/movie_on_surface</item>
+        <item name="colorSurfaceVariant">@color/movie_surface_variant</item>
+        <item name="colorOnSurfaceVariant">@color/movie_on_surface_variant</item>
+        <item name="colorOutline">@color/movie_outline</item>
+        <item name="android:statusBarColor">@color/movie_background</item>
+        <item name="android:navigationBarColor">@color/movie_background</item>
+        <item name="android:windowBackground">@color/movie_background</item>
+        <item name="materialButtonStyle">@style/Widget.MovieTicketApp.Button</item>
+        <item name="textInputStyle">@style/Widget.MovieTicketApp.TextInputLayout</item>
+    </style>
+
+    <style name="Theme.MovieTicketApp" parent="Base.Theme.MovieTicketApp" />
+
+    <style name="Widget.MovieTicketApp.Button" parent="Widget.Material3.Button">
+        <item name="android:minHeight">52dp</item>
+        <item name="cornerRadius">18dp</item>
+    </style>
+
+    <style name="Widget.MovieTicketApp.TextInputLayout" parent="Widget.Material3.TextInputLayout.OutlinedBox">
+        <item name="boxCornerRadiusTopStart">18dp</item>
+        <item name="boxCornerRadiusTopEnd">18dp</item>
+        <item name="boxCornerRadiusBottomStart">18dp</item>
+        <item name="boxCornerRadiusBottomEnd">18dp</item>
+    </style>
+</resources>

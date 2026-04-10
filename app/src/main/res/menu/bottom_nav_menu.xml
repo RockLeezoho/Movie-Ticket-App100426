@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/nav_movies"
+        android:icon="@drawable/ic_nav_movies"
+        android:title="Movies" />
+    <item
+        android:id="@+id/nav_theaters"
+        android:icon="@drawable/ic_nav_theaters"
+        android:title="Theaters" />
+    <item
+        android:id="@+id/nav_showtimes"
+        android:icon="@drawable/ic_nav_showtimes"
+        android:title="Showtimes" />
+    <item
+        android:id="@+id/nav_tickets"
+        android:icon="@drawable/ic_nav_tickets"
+        android:title="Tickets" />
+    <item
+        android:id="@+id/nav_profile"
+        android:icon="@drawable/ic_nav_profile"
+        android:title="Profile" />
+</menu>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <color name="movie_primary">#FF8A80</color>
+    <color name="movie_primary_container">#7F0008</color>
+    <color name="movie_secondary">#FFC857</color>
+    <color name="movie_background">#0F1115</color>
+    <color name="movie_surface">#171A21</color>
+    <color name="movie_surface_variant">#2A2E38</color>
+    <color name="movie_on_surface">#F3F4F6</color>
+    <color name="movie_on_surface_variant">#C5CAD3</color>
+    <color name="movie_outline">#404756</color>
+    <color name="movie_hero_start">#0B1020</color>
+    <color name="movie_hero_end">#7F0008</color>
+    <color name="movie_rating">#FBBF24</color>
+</resources>
