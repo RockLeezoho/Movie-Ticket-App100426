@@ -14,6 +14,7 @@ import com.example.movie_ticket_app.R;
 
 public final class BookingNotificationHelper {
     private static final String CHANNEL_ID = "booking_status_channel";
+    private static final String DEFAULT_MESSAGE = "Booking confirmed";
 
     private BookingNotificationHelper() {
     }
@@ -22,6 +23,8 @@ public final class BookingNotificationHelper {
         if (!canPostNotifications(context)) {
             return;
         }
+
+        String message = body == null || body.trim().isEmpty() ? DEFAULT_MESSAGE : body.trim();
 
         NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
         if (notificationManager == null) {
@@ -32,7 +35,7 @@ public final class BookingNotificationHelper {
             NotificationChannel channel = new NotificationChannel(
                     CHANNEL_ID,
                     "Booking Updates",
-                NotificationManager.IMPORTANCE_HIGH
+                    NotificationManager.IMPORTANCE_HIGH
             );
             channel.enableVibration(true);
             notificationManager.createNotificationChannel(channel);
@@ -40,11 +43,11 @@ public final class BookingNotificationHelper {
 
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context, CHANNEL_ID)
                 .setSmallIcon(R.mipmap.ic_launcher)
-                .setContentTitle("Booking confirmed")
-            .setContentText("Booking confirmed")
-            .setStyle(new NotificationCompat.BigTextStyle().bigText("Booking confirmed"))
-            .setPriority(NotificationCompat.PRIORITY_HIGH)
-            .setDefaults(NotificationCompat.DEFAULT_ALL)
+                .setContentTitle(DEFAULT_MESSAGE)
+                .setContentText(message)
+                .setStyle(new NotificationCompat.BigTextStyle().bigText(message))
+                .setPriority(NotificationCompat.PRIORITY_HIGH)
+                .setDefaults(NotificationCompat.DEFAULT_ALL)
                 .setAutoCancel(true)
                 .setOnlyAlertOnce(true);
 

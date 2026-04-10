@@ -21,6 +21,7 @@ import com.example.movie_ticket_app.adapters.SeatAdapter;
 import com.example.movie_ticket_app.data.FirebasePaths;
 import com.example.movie_ticket_app.data.FirebaseDb;
 import com.example.movie_ticket_app.models.Payment;
+import com.example.movie_ticket_app.models.Showtime;
 import com.example.movie_ticket_app.models.Ticket;
 import com.example.movie_ticket_app.utils.BookingNotificationHelper;
 import com.example.movie_ticket_app.utils.ReminderScheduler;
@@ -32,10 +33,8 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Locale;
 import java.util.Random;
-import java.util.Set;
 import java.util.Map;
 import java.util.List;
 
@@ -62,6 +61,7 @@ public class PaymentActivity extends AppCompatActivity {
     private boolean isProcessing;
     private SeatAdapter seatAdapter;
     private final List<String> availableSeats = new ArrayList<>();
+    private final List<String> bookedSeats = new ArrayList<>();
     private String selectedSeat;
 
     private String movieId;
@@ -131,17 +131,18 @@ public class PaymentActivity extends AppCompatActivity {
         payButton.setEnabled(false);
         progressBar.setVisibility(android.view.View.VISIBLE);
         statusView.setText("Loading available seats...");
-        databaseReference.child(FirebasePaths.TICKETS)
-                .orderByChild("showtimeId")
-                .equalTo(showtimeId)
+        databaseReference.child(FirebasePaths.SHOWTIMES)
+                .child(showtimeId)
                 .addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        Set<String> bookedSeats = new HashSet<>();
-                        for (DataSnapshot child : snapshot.getChildren()) {
-                            Ticket ticket = child.getValue(Ticket.class);
-                            if (ticket != null && !TextUtils.isEmpty(ticket.getSeatNumber())) {
-                                bookedSeats.add(ticket.getSeatNumber().trim().toUpperCase(Locale.US));
+                        bookedSeats.clear();
+                        Showtime showtime = snapshot.getValue(Showtime.class);
+                        if (showtime != null && showtime.getBookedSeats() != null) {
+                            for (String seat : showtime.getBookedSeats()) {
+                                if (!TextUtils.isEmpty(seat)) {
+                                    bookedSeats.add(seat.trim().toUpperCase(Locale.US));
+                                }
                             }
                         }
 
@@ -206,30 +207,18 @@ public class PaymentActivity extends AppCompatActivity {
         RadioButton selectedMethod = findViewById(checkedId);
         String paymentMethod = selectedMethod.getText().toString();
 
-        setProcessingState(true, "Checking seat availability in the sandbox...");
-        databaseReference.child(FirebasePaths.TICKETS)
-                .orderByChild("showtimeId")
-                .equalTo(showtimeId)
-                .addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        for (DataSnapshot child : snapshot.getChildren()) {
-                            Ticket existingTicket = child.getValue(Ticket.class);
-                            if (existingTicket != null && selectedSeat.equalsIgnoreCase(existingTicket.getSeatNumber())) {
-                                setProcessingState(false, "Seat is already booked.");
-                                Toast.makeText(PaymentActivity.this, "This seat is already booked.", Toast.LENGTH_SHORT).show();
-                                return;
-                            }
-                        }
-                        runSandboxPayment(selectedSeat, paymentMethod);
-                    }
+        if (!availableSeats.contains(selectedSeat)) {
+            Toast.makeText(this, "This seat is already booked.", Toast.LENGTH_SHORT).show();
+            selectedSeat = availableSeats.isEmpty() ? null : availableSeats.get(0);
+            if (selectedSeat != null) {
+                seatAdapter.setSelectedSeat(selectedSeat);
+                selectedSeatView.setText("Selected seat: " + selectedSeat);
+            }
+            return;
+        }
 
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-                        setProcessingState(false, "Seat availability check failed.");
-                        Toast.makeText(PaymentActivity.this, "Could not verify seat availability.", Toast.LENGTH_SHORT).show();
-                    }
-                });
+        setProcessingState(true, "Processing sandbox transaction...");
+        runSandboxPayment(selectedSeat, paymentMethod);
     }
 
     private void runSandboxPayment(String seatNumber, String paymentMethod) {
@@ -288,6 +277,7 @@ public class PaymentActivity extends AppCompatActivity {
         Map<String, Object> updates = new HashMap<>();
         updates.put(FirebasePaths.TICKETS + "/" + ticketId, ticket);
         updates.put(FirebasePaths.PAYMENTS + "/" + paymentId, payment);
+        updates.put(FirebasePaths.SHOWTIMES + "/" + showtimeId + "/bookedSeats", buildUpdatedBookedSeats(ticket.getSeatNumber()));
 
         databaseReference.updateChildren(updates).addOnCompleteListener(task -> {
             if (!task.isSuccessful()) {
@@ -353,6 +343,17 @@ public class PaymentActivity extends AppCompatActivity {
         payButton.setEnabled(!processing);
         progressBar.setVisibility(processing ? android.view.View.VISIBLE : android.view.View.GONE);
         statusView.setText(message);
+    }
+
+    private List<String> buildUpdatedBookedSeats(String newSeatNumber) {
+        List<String> updatedSeats = new ArrayList<>(bookedSeats);
+        if (!TextUtils.isEmpty(newSeatNumber)) {
+            String normalizedSeat = newSeatNumber.trim().toUpperCase(Locale.US);
+            if (!updatedSeats.contains(normalizedSeat)) {
+                updatedSeats.add(normalizedSeat);
+            }
+        }
+        return updatedSeats;
     }
 
 }

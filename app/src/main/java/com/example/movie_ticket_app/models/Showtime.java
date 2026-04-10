@@ -1,5 +1,8 @@
 package com.example.movie_ticket_app.models;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Showtime {
     private String id;
     private String movieId;
@@ -9,8 +12,11 @@ public class Showtime {
     private String movieTitle;
     private String theaterName;
     private long startTimeMillis;
+    private List<String> bookedSeats;
 
-    public Showtime() {}
+    public Showtime() {
+        bookedSeats = new ArrayList<>();
+    }
 
     public Showtime(String id, String movieId, String theaterId, String time, double price) {
         this.id = id;
@@ -18,6 +24,7 @@ public class Showtime {
         this.theaterId = theaterId;
         this.time = time;
         this.price = price;
+        this.bookedSeats = new ArrayList<>();
     }
 
     public String getId() { return id; }
@@ -28,6 +35,7 @@ public class Showtime {
     public String getMovieTitle() { return movieTitle; }
     public String getTheaterName() { return theaterName; }
     public long getStartTimeMillis() { return startTimeMillis; }
+    public List<String> getBookedSeats() { return bookedSeats; }
 
     public void setId(String id) { this.id = id; }
     public void setMovieId(String movieId) { this.movieId = movieId; }
@@ -37,4 +45,5 @@ public class Showtime {
     public void setMovieTitle(String movieTitle) { this.movieTitle = movieTitle; }
     public void setTheaterName(String theaterName) { this.theaterName = theaterName; }
     public void setStartTimeMillis(long startTimeMillis) { this.startTimeMillis = startTimeMillis; }
+    public void setBookedSeats(List<String> bookedSeats) { this.bookedSeats = bookedSeats; }
 }

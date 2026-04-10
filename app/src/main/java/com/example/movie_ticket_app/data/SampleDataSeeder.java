@@ -9,6 +9,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 
 import java.util.Calendar;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
@@ -82,8 +83,28 @@ public final class SampleDataSeeder {
         showtime.setMovieTitle(movieTitle);
         showtime.setTheaterName(theaterName);
         showtime.setStartTimeMillis(startAt);
+        showtime.setBookedSeats(sampleBookedSeatsForShowtime(id));
 
         updates.put(FirebasePaths.SHOWTIMES + "/" + id, showtime);
+    }
+
+    private static java.util.List<String> sampleBookedSeatsForShowtime(String showtimeId) {
+        switch (showtimeId) {
+            case "s1":
+                return Arrays.asList("A1", "A2", "B7");
+            case "s2":
+                return Arrays.asList("C3", "C4", "D10");
+            case "s3":
+                return Arrays.asList("A5", "B1");
+            case "s4":
+                return Arrays.asList("D6", "E8", "E9");
+            case "s5":
+                return Arrays.asList("A3", "A4", "C9");
+            case "s6":
+                return Arrays.asList("B2", "B3", "D12");
+            default:
+                return new java.util.ArrayList<>();
+        }
     }
 
     private static long millisTodayOrTomorrow(int hour, int minute) {
