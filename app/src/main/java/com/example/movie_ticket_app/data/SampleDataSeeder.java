@@ -36,19 +36,19 @@ public final class SampleDataSeeder {
 
     private static void seedMovies(Map<String, Object> updates) {
         Movie avatar = new Movie("m1", "Avatar: The Way of Water",
-                "Jake Sully and his family face a powerful threat and fight to protect Pandora.",
+            "Jake Sully và gia đình anh phải đối mặt với một mối đe dọa mạnh mẽ để bảo vệ Pandora.",
                 "https://image.tmdb.org/t/p/w500/t6HIqrRAclMCA60NsSmeqe9RmNV.jpg",
-                "Sci-Fi", 7.8, 192);
+            "Khoa học viễn tưởng", 7.8, 192);
 
         Movie wick = new Movie("m2", "John Wick: Chapter 4",
-                "John Wick uncovers a path to defeating The High Table.",
+            "John Wick tìm ra con đường để đánh bại The High Table.",
                 "https://image.tmdb.org/t/p/w500/vZloFAK7NmvMGKE7VkF5UHaz0I.jpg",
-                "Action", 8.1, 169);
+            "Hành động", 8.1, 169);
 
         Movie spider = new Movie("m3", "Spider-Man: Across the Spider-Verse",
-                "Miles Morales catapults across the Multiverse and meets new Spider allies.",
+            "Miles Morales lao vào đa vũ trụ và gặp những đồng minh Spider mới.",
                 "https://image.tmdb.org/t/p/w500/8Vt6mWEReuy4Of61Lnj5Xj704m8.jpg",
-                "Animation", 8.6, 140);
+            "Hoạt hình", 8.6, 140);
 
         updates.put(FirebasePaths.MOVIES + "/" + avatar.getId(), avatar);
         updates.put(FirebasePaths.MOVIES + "/" + wick.getId(), wick);
@@ -56,9 +56,9 @@ public final class SampleDataSeeder {
     }
 
     private static void seedTheaters(Map<String, Object> updates) {
-        Theater t1 = new Theater("t1", "Cineplex Central", "123 Movie St, Cinema City");
-        Theater t2 = new Theater("t2", "Starlight Cinema", "456 Star Blvd, Galaxy Town");
-        Theater t3 = new Theater("t3", "Grand Theater", "789 Main Ave, Downtown");
+        Theater t1 = new Theater("t1", "Cineplex Central", "123 Phố Movie, Thành phố Cinema");
+        Theater t2 = new Theater("t2", "Starlight Cinema", "456 Đại lộ Star, Thị trấn Galaxy");
+        Theater t3 = new Theater("t3", "Grand Theater", "789 Đại lộ Chính, Khu trung tâm");
 
         updates.put(FirebasePaths.THEATERS + "/" + t1.getId(), t1);
         updates.put(FirebasePaths.THEATERS + "/" + t2.getId(), t2);
@@ -178,8 +178,8 @@ public final class SampleDataSeeder {
                 "Avatar: The Way of Water",
                 "Cineplex Central",
                 "B7",
-                "Sandbox Wallet",
-                "COMPLETED",
+                "Ví sandbox",
+                "HOÀN THÀNH",
                 12.5,
                 System.currentTimeMillis() - 86_400_000L
         );
@@ -192,8 +192,8 @@ public final class SampleDataSeeder {
                 "Spider-Man: Across the Spider-Verse",
                 "Starlight Cinema",
                 "D12",
-                "Sandbox Card",
-                "FAILED",
+                "Thẻ sandbox",
+                "THẤT BẠI",
                 11.0,
                 System.currentTimeMillis() - 43_200_000L
         );

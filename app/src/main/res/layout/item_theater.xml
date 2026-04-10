@@ -42,7 +42,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="14dp"
             android:layout_marginTop="4dp"
-            android:text="123 Movie St, Cinema City"
+            android:text="123 Phố Movie, Thành phố Cinema"
             android:textColor="?attr/colorOnSurfaceVariant"
             android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"

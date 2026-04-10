@@ -30,8 +30,8 @@ public class GlobalShowtimeAdapter extends RecyclerView.Adapter<GlobalShowtimeAd
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Showtime showtime = showtimeList.get(position);
-        holder.movieTitle.setText(showtime.getMovieTitle() == null ? "Unknown movie" : showtime.getMovieTitle());
-        holder.theaterName.setText(showtime.getTheaterName() == null ? "Unknown theater" : showtime.getTheaterName());
+        holder.movieTitle.setText(showtime.getMovieTitle() == null ? "Không rõ phim" : showtime.getMovieTitle());
+        holder.theaterName.setText(showtime.getTheaterName() == null ? "Không rõ rạp" : showtime.getTheaterName());
         holder.time.setText(showtime.getTime());
         holder.price.setText(String.format(Locale.getDefault(), "$%.2f", showtime.getPrice()));
     }

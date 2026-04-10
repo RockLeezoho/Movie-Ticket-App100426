@@ -30,7 +30,7 @@
                 android:background="@drawable/bg_tag_chip"
                 android:paddingHorizontal="12dp"
                 android:paddingVertical="6dp"
-                android:text="Coming soon"
+                android:text="Sắp ra mắt"
                 android:textColor="@color/movie_on_surface"
                 android:textSize="12sp"
                 android:textStyle="bold" />
@@ -40,7 +40,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="This section is waiting for content."
+                android:text="Khu vực này đang chờ nội dung."
                 android:textColor="?attr/colorOnSurface"
                 android:textSize="20sp"
                 android:textStyle="bold" />

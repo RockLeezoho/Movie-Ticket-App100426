@@ -1,16 +1,16 @@
 <resources>
-    <string name="app_name">Movie-Ticket-App</string>
-    <string name="error_name_required">Name is required</string>
-    <string name="error_email_required">Email is required</string>
-    <string name="error_password_required">Password is required</string>
-    <string name="error_password_min_length">Password must be at least 6 characters</string>
-    <string name="auth_login_success">Login successful</string>
-    <string name="auth_login_failed">Login failed</string>
-    <string name="auth_register_success">Registration successful</string>
-    <string name="auth_register_failed">Registration failed</string>
-    <string name="auth_profile_update_failed">Could not update profile name</string>
-    <string name="auth_profile_sync_failed">Failed to sync profile data</string>
-    <string name="notification_auth_title">Movie Ticket App</string>
-    <string name="notification_login_success_body">You signed in successfully.</string>
-    <string name="notification_register_success_body">Your account was created successfully.</string>
+    <string name="app_name">Ứng dụng vé phim</string>
+    <string name="error_name_required">Vui lòng nhập họ tên</string>
+    <string name="error_email_required">Vui lòng nhập email</string>
+    <string name="error_password_required">Vui lòng nhập mật khẩu</string>
+    <string name="error_password_min_length">Mật khẩu phải có ít nhất 6 ký tự</string>
+    <string name="auth_login_success">Đăng nhập thành công</string>
+    <string name="auth_login_failed">Đăng nhập thất bại</string>
+    <string name="auth_register_success">Đăng ký thành công</string>
+    <string name="auth_register_failed">Đăng ký thất bại</string>
+    <string name="auth_profile_update_failed">Không thể cập nhật tên hồ sơ</string>
+    <string name="auth_profile_sync_failed">Không thể đồng bộ dữ liệu hồ sơ</string>
+    <string name="notification_auth_title">Ứng dụng vé phim</string>
+    <string name="notification_login_success_body">Bạn đã đăng nhập thành công.</string>
+    <string name="notification_register_success_body">Tài khoản của bạn đã được tạo thành công.</string>
 </resources>

@@ -30,7 +30,7 @@
                 android:background="@drawable/bg_tag_chip"
                 android:paddingHorizontal="12dp"
                 android:paddingVertical="6dp"
-                android:text="Schedule"
+                android:text="Lịch chiếu"
                 android:textColor="@color/movie_on_surface"
                 android:textSize="12sp"
                 android:textStyle="bold" />
@@ -40,7 +40,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
-                android:text="All Showtimes"
+                android:text="Tất cả suất chiếu"
                 android:textColor="?attr/colorOnPrimaryContainer"
                 android:textSize="28sp"
                 android:textStyle="bold" />
@@ -49,7 +49,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="6dp"
-                android:text="Browse sessions across theaters and times at a glance."
+                android:text="Xem nhanh các suất chiếu theo rạp và thời gian."
                 android:textColor="?attr/colorOnPrimaryContainer"
                 android:textSize="14sp" />
         </LinearLayout>
@@ -60,7 +60,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:text="No showtimes available"
+        android:text="Hiện chưa có suất chiếu"
         android:textColor="?attr/colorOnSurfaceVariant"
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"

@@ -8,5 +8,5 @@
     android:layout_margin="4dp"
     android:minHeight="44dp"
     android:paddingHorizontal="16dp"
-    android:text="10:00 AM"
+    android:text="10:00"
     app:cornerRadius="20dp" />

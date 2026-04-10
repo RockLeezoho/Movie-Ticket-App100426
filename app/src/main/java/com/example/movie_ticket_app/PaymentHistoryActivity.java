@@ -55,7 +55,7 @@ public class PaymentHistoryActivity extends AppCompatActivity {
     private void loadPayments() {
         if (FirebaseAuth.getInstance().getCurrentUser() == null) {
             emptyState.setVisibility(View.VISIBLE);
-            Toast.makeText(this, "Please login first.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Vui lòng đăng nhập trước.", Toast.LENGTH_SHORT).show();
             return;
         }
 

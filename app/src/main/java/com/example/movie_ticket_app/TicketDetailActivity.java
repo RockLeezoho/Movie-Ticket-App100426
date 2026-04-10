@@ -55,7 +55,7 @@ public class TicketDetailActivity extends AppCompatActivity {
 
         String ticketId = getIntent().getStringExtra(EXTRA_TICKET_ID);
         if (ticketId == null || ticketId.trim().isEmpty()) {
-            Toast.makeText(this, "Missing ticket id.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Thiếu mã vé.", Toast.LENGTH_SHORT).show();
             finish();
             return;
         }
@@ -72,14 +72,14 @@ public class TicketDetailActivity extends AppCompatActivity {
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         Ticket ticket = snapshot.getValue(Ticket.class);
                         if (ticket == null) {
-                            Toast.makeText(TicketDetailActivity.this, "Ticket not found.", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(TicketDetailActivity.this, "Không tìm thấy vé.", Toast.LENGTH_SHORT).show();
                             finish();
                             return;
                         }
 
                         if (FirebaseAuth.getInstance().getCurrentUser() == null
                                 || !FirebaseAuth.getInstance().getCurrentUser().getUid().equals(ticket.getUserId())) {
-                            Toast.makeText(TicketDetailActivity.this, "Unauthorized.", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(TicketDetailActivity.this, "Không có quyền truy cập.", Toast.LENGTH_SHORT).show();
                             finish();
                             return;
                         }
@@ -89,7 +89,7 @@ public class TicketDetailActivity extends AppCompatActivity {
 
                     @Override
                     public void onCancelled(@NonNull DatabaseError error) {
-                        Toast.makeText(TicketDetailActivity.this, "Failed to load ticket.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(TicketDetailActivity.this, "Không tải được vé.", Toast.LENGTH_SHORT).show();
                         finish();
                     }
                 });
@@ -100,11 +100,11 @@ public class TicketDetailActivity extends AppCompatActivity {
         movieView.setText(ticket.getMovieTitle());
         theaterView.setText(ticket.getTheaterName());
         timeView.setText(ticket.getTime());
-        seatView.setText(String.format(Locale.getDefault(), "Seat: %s", ticket.getSeatNumber()));
-        paymentIdView.setText(ticket.getPaymentId() == null ? "No payment id" : ticket.getPaymentId());
+        seatView.setText(String.format(Locale.getDefault(), "Ghế: %s", ticket.getSeatNumber()));
+        paymentIdView.setText(ticket.getPaymentId() == null ? "Chưa có mã thanh toán" : ticket.getPaymentId());
         priceView.setText(String.format(Locale.getDefault(), "$%.2f", ticket.getPrice()));
         showtimeView.setText(DateFormat.getDateTimeInstance(DateFormat.MEDIUM, DateFormat.SHORT)
                 .format(ticket.getShowtimeMillis()));
-        statusView.setText("Confirmed");
+        statusView.setText("Đã xác nhận");
     }
 }

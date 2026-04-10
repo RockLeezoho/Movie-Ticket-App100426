@@ -44,12 +44,12 @@ public class LoginActivity extends AppCompatActivity {
         String password = passwordEditText.getText().toString().trim();
 
         if (TextUtils.isEmpty(email)) {
-            emailEditText.setError("Email is required");
+            emailEditText.setError("Vui lòng nhập email");
             return;
         }
 
         if (TextUtils.isEmpty(password)) {
-            passwordEditText.setError("Password is required");
+            passwordEditText.setError("Vui lòng nhập mật khẩu");
             return;
         }
 
@@ -69,7 +69,7 @@ public class LoginActivity extends AppCompatActivity {
                             finish();
                         }
                     } else {
-                        Toast.makeText(LoginActivity.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(LoginActivity.this, "Xác thực thất bại.", Toast.LENGTH_SHORT).show();
                     }
                 });
     }

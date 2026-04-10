@@ -28,7 +28,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="14dp"
-            android:text="Movie Title"
+            android:text="Tên phim"
             android:textColor="?attr/colorOnSurface"
             android:textSize="18sp"
             android:textStyle="bold"
@@ -42,7 +42,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="14dp"
             android:layout_marginTop="4dp"
-            android:text="Theater Name"
+            android:text="Tên rạp"
             android:textColor="?attr/colorOnSurfaceVariant"
             android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -68,7 +68,7 @@
                 android:background="@drawable/bg_tag_chip"
                 android:paddingHorizontal="12dp"
                 android:paddingVertical="6dp"
-                android:text="Time: 10:00 AM"
+                android:text="Giờ: 10:00"
                 android:textColor="@color/movie_on_surface"
                 android:textSize="13sp" />
 
@@ -79,7 +79,7 @@
                 android:background="@drawable/bg_tag_chip"
                 android:paddingHorizontal="12dp"
                 android:paddingVertical="6dp"
-                android:text="Seat: A12"
+                android:text="Ghế: A12"
                 android:textColor="@color/movie_primary"
                 android:textSize="13sp"
                 android:textStyle="bold" />

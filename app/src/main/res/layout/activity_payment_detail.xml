@@ -33,14 +33,14 @@
                     style="@style/Widget.Material3.Button.TextButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Back" />
+                    android:text="Quay lại" />
 
                 <TextView
                     android:id="@+id/payment_detail_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:text="Transaction Details"
+                    android:text="Chi tiết giao dịch"
                     android:textColor="?attr/colorOnSurface"
                     android:textSize="28sp"
                     android:textStyle="bold" />
@@ -53,7 +53,7 @@
                     android:background="@drawable/bg_tag_chip"
                     android:paddingHorizontal="12dp"
                     android:paddingVertical="6dp"
-                    android:text="COMPLETED"
+                    android:text="HOÀN THÀNH"
                     android:textColor="@color/movie_rating"
                     android:textSize="13sp"
                     android:textStyle="bold" />
@@ -63,7 +63,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="18dp"
-                    android:text="Payment ID"
+                    android:text="Mã thanh toán"
                     android:textColor="?attr/colorOnSurfaceVariant"
                     android:textSize="14sp" />
 
@@ -72,7 +72,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:text="Ticket ID"
+                    android:text="Mã vé"
                     android:textColor="?attr/colorOnSurfaceVariant"
                     android:textSize="14sp" />
 
@@ -86,7 +86,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="18dp"
-                    android:text="Ticket summary"
+                    android:text="Tóm tắt vé"
                     android:textColor="?attr/colorOnSurface"
                     android:textSize="18sp"
                     android:textStyle="bold" />
@@ -96,7 +96,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:text="Movie"
+                    android:text="Phim"
                     android:textColor="?attr/colorOnSurface"
                     android:textSize="20sp"
                     android:textStyle="bold" />
@@ -106,7 +106,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="6dp"
-                    android:text="Theater"
+                    android:text="Rạp"
                     android:textColor="?attr/colorOnSurfaceVariant"
                     android:textSize="14sp" />
 
@@ -115,7 +115,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="6dp"
-                    android:text="Seat"
+                    android:text="Ghế"
                     android:textColor="?attr/colorOnSurfaceVariant"
                     android:textSize="14sp" />
 
@@ -124,7 +124,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="6dp"
-                    android:text="Method"
+                    android:text="Phương thức"
                     android:textColor="?attr/colorOnSurfaceVariant"
                     android:textSize="14sp" />
 
@@ -143,7 +143,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:text="Time"
+                    android:text="Thời gian"
                     android:textColor="?attr/colorOnSurfaceVariant"
                     android:textSize="14sp" />
 
@@ -152,7 +152,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="18dp"
-                    android:text="Ticket info"
+                    android:text="Thông tin vé"
                     android:textColor="?attr/colorOnSurface"
                     android:textSize="15sp" />
 
@@ -172,7 +172,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="22dp"
-                    android:text="Open payment history"
+                    android:text="Mở lịch sử thanh toán"
                     app:backgroundTint="@color/movie_primary" />
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>

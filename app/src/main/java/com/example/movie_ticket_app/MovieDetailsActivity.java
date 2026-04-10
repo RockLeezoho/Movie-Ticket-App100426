@@ -74,9 +74,9 @@ public class MovieDetailsActivity extends AppCompatActivity {
         double movieRating = getIntent().getDoubleExtra("movie_rating", 0);
         String posterUrl = getIntent().getStringExtra("movie_poster");
 
-        title.setText(movieTitle == null ? "Movie Details" : movieTitle);
-        genre.setText(movieGenre == null ? "Genre" : movieGenre);
-        description.setText(movieDescription == null ? "Description is being updated." : movieDescription);
+        title.setText(movieTitle == null ? "Chi tiết phim" : movieTitle);
+        genre.setText(movieGenre == null ? "Thể loại" : movieGenre);
+        description.setText(movieDescription == null ? "Mô tả đang được cập nhật." : movieDescription);
         rating.setText(String.format(Locale.getDefault(), "★ %.1f", movieRating));
 
         Glide.with(this)
@@ -87,7 +87,7 @@ public class MovieDetailsActivity extends AppCompatActivity {
 
     private void loadMovieShowtimes() {
         if (movieId == null || movieId.isEmpty()) {
-            Toast.makeText(this, "Missing movie data.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Thiếu dữ liệu phim.", Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -96,7 +96,7 @@ public class MovieDetailsActivity extends AppCompatActivity {
                 .equalTo(movieId)
                 .get()
                 .addOnSuccessListener(this::bindShowtimes)
-                .addOnFailureListener(e -> Toast.makeText(this, "Failed to load showtimes", Toast.LENGTH_SHORT).show());
+                .addOnFailureListener(e -> Toast.makeText(this, "Không tải được suất chiếu.", Toast.LENGTH_SHORT).show());
     }
 
     private void bindShowtimes(DataSnapshot snapshot) {
@@ -111,13 +111,13 @@ public class MovieDetailsActivity extends AppCompatActivity {
         adapter.notifyDataSetChanged();
 
         if (showtimeList.isEmpty()) {
-            Toast.makeText(this, "No showtimes available for this movie", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Hiện chưa có suất chiếu cho phim này.", Toast.LENGTH_SHORT).show();
         }
     }
 
     private void openPaymentScreen(Showtime showtime) {
         if (mAuth.getCurrentUser() == null) {
-            Toast.makeText(this, "Please login to book tickets", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Vui lòng đăng nhập để đặt vé.", Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -125,7 +125,7 @@ public class MovieDetailsActivity extends AppCompatActivity {
         intent.putExtra("movie_id", movieId);
         intent.putExtra("showtime_id", showtime.getId());
         intent.putExtra("movie_title", title.getText().toString());
-        intent.putExtra("theater_name", showtime.getTheaterName() == null ? "Theater" : showtime.getTheaterName());
+        intent.putExtra("theater_name", showtime.getTheaterName() == null ? "Rạp" : showtime.getTheaterName());
         intent.putExtra("showtime_time", showtime.getTime());
         intent.putExtra("showtime_price", showtime.getPrice());
         intent.putExtra("showtime_start_millis", showtime.getStartTimeMillis());

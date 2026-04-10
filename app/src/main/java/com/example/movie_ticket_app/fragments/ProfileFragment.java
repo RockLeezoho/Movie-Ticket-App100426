@@ -102,6 +102,6 @@ public class ProfileFragment extends Fragment {
             }
         }
 
-        return "Movie Fan";
+        return "Người yêu phim";
     }
 }

@@ -135,7 +135,7 @@ public class RegisterActivity extends AppCompatActivity {
         }
 
         if (message.toLowerCase().contains("permission denied")) {
-            return "Firebase Database permission denied. Check that Realtime Database rules are deployed for the current project.";
+            return "Firebase Database bị từ chối quyền. Hãy kiểm tra rằng rules của Realtime Database đã được triển khai cho project hiện tại.";
         }
 
         return message;

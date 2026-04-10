@@ -70,7 +70,7 @@ public class PaymentDetailActivity extends AppCompatActivity {
 
         String paymentId = getIntent().getStringExtra(EXTRA_PAYMENT_ID);
         if (paymentId == null || paymentId.trim().isEmpty()) {
-            Toast.makeText(this, "Missing payment id.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Thiếu mã thanh toán.", Toast.LENGTH_SHORT).show();
             finish();
             return;
         }
@@ -87,14 +87,14 @@ public class PaymentDetailActivity extends AppCompatActivity {
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         Payment payment = snapshot.getValue(Payment.class);
                         if (payment == null) {
-                            Toast.makeText(PaymentDetailActivity.this, "Payment not found.", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(PaymentDetailActivity.this, "Không tìm thấy thanh toán.", Toast.LENGTH_SHORT).show();
                             finish();
                             return;
                         }
 
                         if (FirebaseAuth.getInstance().getCurrentUser() == null
                                 || !FirebaseAuth.getInstance().getCurrentUser().getUid().equals(payment.getUserId())) {
-                            Toast.makeText(PaymentDetailActivity.this, "Unauthorized.", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(PaymentDetailActivity.this, "Không có quyền truy cập.", Toast.LENGTH_SHORT).show();
                             finish();
                             return;
                         }
@@ -104,30 +104,30 @@ public class PaymentDetailActivity extends AppCompatActivity {
 
                     @Override
                     public void onCancelled(@NonNull DatabaseError error) {
-                        Toast.makeText(PaymentDetailActivity.this, "Failed to load payment.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(PaymentDetailActivity.this, "Không tải được thanh toán.", Toast.LENGTH_SHORT).show();
                         finish();
                     }
                 });
     }
 
     private void bindPayment(Payment payment) {
-        titleView.setText("Transaction Details");
+        titleView.setText("Chi tiết giao dịch");
         statusView.setText(payment.getStatus());
         paymentIdView.setText(payment.getId());
-        ticketIdView.setText(payment.getTicketId() == null ? "No ticket issued" : payment.getTicketId());
+        ticketIdView.setText(payment.getTicketId() == null ? "Chưa phát hành vé" : payment.getTicketId());
         movieView.setText(payment.getMovieTitle());
         theaterView.setText(payment.getTheaterName());
-        seatView.setText(String.format(Locale.getDefault(), "Seat: %s", payment.getSeatNumber()));
+        seatView.setText(String.format(Locale.getDefault(), "Ghế: %s", payment.getSeatNumber()));
         methodView.setText(payment.getPaymentMethod());
         amountView.setText(String.format(Locale.getDefault(), "$%.2f", payment.getAmount()));
         timeView.setText(DateFormat.getDateTimeInstance(DateFormat.MEDIUM, DateFormat.SHORT)
                 .format(payment.getCreatedAtMillis()));
 
         if (payment.getTicketId() == null || payment.getTicketId().trim().isEmpty()) {
-            ticketInfoView.setText("This transaction did not issue a ticket because it was declined in sandbox mode.");
+            ticketInfoView.setText("Giao dịch này không phát hành vé vì đã bị từ chối ở chế độ sandbox.");
             viewTicketButton.setVisibility(View.GONE);
         } else {
-            ticketInfoView.setText("Ticket issued successfully and saved to Firebase.");
+            ticketInfoView.setText("Vé đã được phát hành thành công và lưu vào Firebase.");
             viewTicketButton.setVisibility(View.VISIBLE);
             viewTicketButton.setOnClickListener(v -> {
                 Intent intent = new Intent(this, TicketDetailActivity.class);
@@ -151,7 +151,7 @@ public class PaymentDetailActivity extends AppCompatActivity {
                         }
 
                         ticketInfoView.setText(String.format(Locale.getDefault(),
-                                "Ticket %s issued for %s, %s at seat %s.",
+                            "Vé %s đã được phát hành cho phim %s, %s tại ghế %s.",
                                 ticket.getId(),
                                 ticket.getMovieTitle(),
                                 ticket.getTime(),

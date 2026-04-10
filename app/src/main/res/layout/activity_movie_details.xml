@@ -63,7 +63,7 @@
                     android:id="@+id/detail_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Movie Title"
+                    android:text="Tên phim"
                     android:textColor="?attr/colorOnSurface"
                     android:textSize="28sp"
                     android:textStyle="bold" />
@@ -81,7 +81,7 @@
                         android:background="@drawable/bg_tag_chip"
                         android:paddingHorizontal="12dp"
                         android:paddingVertical="6dp"
-                        android:text="Genre"
+                        android:text="Thể loại"
                         android:textColor="@color/movie_on_surface"
                         android:textSize="14sp" />
 
@@ -105,7 +105,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:lineSpacingExtra="4dp"
-                    android:text="Movie description goes here..."
+                    android:text="Mô tả phim sẽ hiển thị ở đây..."
                     android:textColor="?attr/colorOnSurfaceVariant"
                     android:textSize="15sp" />
 
@@ -114,7 +114,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="24dp"
-                    android:text="Available Showtimes"
+                    android:text="Lịch chiếu khả dụng"
                     android:textColor="?attr/colorOnSurface"
                     android:textSize="20sp"
                     android:textStyle="bold" />

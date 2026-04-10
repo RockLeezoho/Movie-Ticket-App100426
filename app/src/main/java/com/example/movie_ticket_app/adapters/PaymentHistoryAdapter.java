@@ -41,7 +41,7 @@ public class PaymentHistoryAdapter extends RecyclerView.Adapter<PaymentHistoryAd
         Payment payment = paymentList.get(position);
         holder.movieTitle.setText(payment.getMovieTitle());
         holder.theaterName.setText(payment.getTheaterName());
-        holder.seatNumber.setText(String.format(Locale.getDefault(), "Seat: %s", payment.getSeatNumber()));
+        holder.seatNumber.setText(String.format(Locale.getDefault(), "Ghế: %s", payment.getSeatNumber()));
         holder.amount.setText(String.format(Locale.getDefault(), "$%.2f", payment.getAmount()));
         holder.method.setText(payment.getPaymentMethod());
         holder.status.setText(payment.getStatus());

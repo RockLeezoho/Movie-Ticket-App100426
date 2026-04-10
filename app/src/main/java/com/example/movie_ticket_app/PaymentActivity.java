@@ -60,6 +60,7 @@ public class PaymentActivity extends AppCompatActivity {
     private final Random random = new Random();
     private boolean isProcessing;
     private SeatAdapter seatAdapter;
+    private final List<String> allSeats = new ArrayList<>();
     private final List<String> availableSeats = new ArrayList<>();
     private final List<String> bookedSeats = new ArrayList<>();
     private String selectedSeat;
@@ -93,7 +94,7 @@ public class PaymentActivity extends AppCompatActivity {
 
         seatAdapter = new SeatAdapter(availableSeats, seatCode -> {
             selectedSeat = seatCode;
-            selectedSeatView.setText("Selected seat: " + seatCode);
+            selectedSeatView.setText("Ghế đã chọn: " + seatCode);
         });
         seatRecyclerView.setLayoutManager(new GridLayoutManager(this, 4));
         seatRecyclerView.setAdapter(seatAdapter);
@@ -112,9 +113,9 @@ public class PaymentActivity extends AppCompatActivity {
         showtimeMillis = getIntent().getLongExtra("showtime_start_millis", 0L);
         amount = getIntent().getDoubleExtra("showtime_price", 0.0);
 
-        movieTitleView.setText(movieTitle == null ? "Movie" : movieTitle);
-        theaterView.setText(theaterName == null ? "Theater" : theaterName);
-        timeView.setText(showtimeTime == null ? "Time" : showtimeTime);
+        movieTitleView.setText(movieTitle == null ? "Phim" : movieTitle);
+        theaterView.setText(theaterName == null ? "Rạp" : theaterName);
+        timeView.setText(showtimeTime == null ? "Giờ chiếu" : showtimeTime);
         amountView.setText(String.format(Locale.getDefault(), "$%.2f", amount));
     }
 
@@ -123,14 +124,14 @@ public class PaymentActivity extends AppCompatActivity {
             isProcessing = false;
             payButton.setEnabled(false);
             progressBar.setVisibility(android.view.View.GONE);
-            statusView.setText("Missing showtime information.");
+            statusView.setText("Thiếu thông tin suất chiếu.");
             return;
         }
 
         isProcessing = true;
         payButton.setEnabled(false);
         progressBar.setVisibility(android.view.View.VISIBLE);
-        statusView.setText("Loading available seats...");
+        statusView.setText("Đang tải ghế còn trống...");
         databaseReference.child(FirebasePaths.SHOWTIMES)
                 .child(showtimeId)
                 .addListenerForSingleValueEvent(new ValueEventListener() {
@@ -146,26 +147,29 @@ public class PaymentActivity extends AppCompatActivity {
                             }
                         }
 
+                        allSeats.clear();
                         availableSeats.clear();
                         for (char row = 'A'; row <= 'E'; row++) {
                             for (int seatNumber = 1; seatNumber <= 10; seatNumber++) {
                                 String seatCode = row + String.valueOf(seatNumber);
+                                allSeats.add(seatCode);
                                 if (!bookedSeats.contains(seatCode)) {
                                     availableSeats.add(seatCode);
                                 }
                             }
                         }
 
+                        seatAdapter.setBookedSeats(bookedSeats);
                         seatAdapter.notifyDataSetChanged();
                         if (!availableSeats.isEmpty()) {
                             selectedSeat = availableSeats.get(0);
                             seatAdapter.setSelectedSeat(selectedSeat);
-                            selectedSeatView.setText("Selected seat: " + selectedSeat);
-                            statusView.setText("Choose an available seat and continue to payment.");
+                            selectedSeatView.setText("Ghế đã chọn: " + selectedSeat);
+                            statusView.setText("Hãy chọn một ghế còn trống để tiếp tục thanh toán.");
                         } else {
                             selectedSeat = null;
-                            selectedSeatView.setText("Selected seat: none");
-                            statusView.setText("No seats available for this showtime.");
+                            selectedSeatView.setText("Ghế đã chọn: chưa có");
+                            statusView.setText("Không còn ghế trống cho suất chiếu này.");
                         }
                         isProcessing = false;
                         progressBar.setVisibility(android.view.View.GONE);
@@ -177,8 +181,8 @@ public class PaymentActivity extends AppCompatActivity {
                         isProcessing = false;
                         progressBar.setVisibility(android.view.View.GONE);
                         payButton.setEnabled(false);
-                        statusView.setText("Failed to load seats.");
-                        Toast.makeText(PaymentActivity.this, "Could not load seat map.", Toast.LENGTH_SHORT).show();
+                        statusView.setText("Không tải được ghế.");
+                        Toast.makeText(PaymentActivity.this, "Không thể tải sơ đồ ghế.", Toast.LENGTH_SHORT).show();
                     }
                 });
     }
@@ -189,18 +193,18 @@ public class PaymentActivity extends AppCompatActivity {
         }
 
         if (auth.getCurrentUser() == null) {
-            Toast.makeText(this, "Please login first.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Vui lòng đăng nhập trước.", Toast.LENGTH_SHORT).show();
             return;
         }
 
         if (TextUtils.isEmpty(selectedSeat)) {
-            Toast.makeText(this, "Please select an available seat.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Vui lòng chọn một ghế còn trống.", Toast.LENGTH_SHORT).show();
             return;
         }
 
         int checkedId = paymentMethodGroup.getCheckedRadioButtonId();
         if (checkedId == -1) {
-            Toast.makeText(this, "Choose a payment method.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Vui lòng chọn phương thức thanh toán.", Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -208,21 +212,21 @@ public class PaymentActivity extends AppCompatActivity {
         String paymentMethod = selectedMethod.getText().toString();
 
         if (!availableSeats.contains(selectedSeat)) {
-            Toast.makeText(this, "This seat is already booked.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Ghế này đã được đặt.", Toast.LENGTH_SHORT).show();
             selectedSeat = availableSeats.isEmpty() ? null : availableSeats.get(0);
             if (selectedSeat != null) {
                 seatAdapter.setSelectedSeat(selectedSeat);
-                selectedSeatView.setText("Selected seat: " + selectedSeat);
+                selectedSeatView.setText("Ghế đã chọn: " + selectedSeat);
             }
             return;
         }
 
-        setProcessingState(true, "Processing sandbox transaction...");
+        setProcessingState(true, "Đang xử lý giao dịch sandbox...");
         runSandboxPayment(selectedSeat, paymentMethod);
     }
 
     private void runSandboxPayment(String seatNumber, String paymentMethod) {
-        setProcessingState(true, "Processing sandbox transaction...");
+        setProcessingState(true, "Đang xử lý giao dịch sandbox...");
         long delayMillis = 1500L + random.nextInt(1200);
         uiHandler.postDelayed(() -> {
             boolean success = random.nextInt(100) < 85;
@@ -239,8 +243,8 @@ public class PaymentActivity extends AppCompatActivity {
         String paymentId = databaseReference.child(FirebasePaths.PAYMENTS).push().getKey();
 
         if (ticketId == null || paymentId == null) {
-            setProcessingState(false, "Could not create booking records.");
-            Toast.makeText(this, "Could not create booking records.", Toast.LENGTH_SHORT).show();
+            setProcessingState(false, "Không thể tạo bản ghi đặt vé.");
+            Toast.makeText(this, "Không thể tạo bản ghi đặt vé.", Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -252,9 +256,9 @@ public class PaymentActivity extends AppCompatActivity {
                 userId,
                 showtimeId,
                 paymentId,
-                movieTitle == null ? "Movie" : movieTitle,
-                theaterName == null ? "Theater" : theaterName,
-                showtimeTime == null ? "Time" : showtimeTime,
+                movieTitle == null ? "Phim" : movieTitle,
+                theaterName == null ? "Rạp" : theaterName,
+                showtimeTime == null ? "Giờ chiếu" : showtimeTime,
                 seatNumber,
                 amount,
                 showtimeMillis
@@ -269,7 +273,7 @@ public class PaymentActivity extends AppCompatActivity {
                 theaterName == null ? "Theater" : theaterName,
                 seatNumber,
                 paymentMethod,
-                "COMPLETED",
+                "HOÀN THÀNH",
                 amount,
                 now
         );
@@ -281,18 +285,19 @@ public class PaymentActivity extends AppCompatActivity {
 
         databaseReference.updateChildren(updates).addOnCompleteListener(task -> {
             if (!task.isSuccessful()) {
-                setProcessingState(false, "Payment failed to save.");
-                Toast.makeText(this, "Payment failed.", Toast.LENGTH_SHORT).show();
+                setProcessingState(false, "Không thể lưu thanh toán.");
+                Toast.makeText(this, "Thanh toán thất bại.", Toast.LENGTH_SHORT).show();
                 return;
             }
 
             BookingNotificationHelper.showSuccess(
                     this,
-                    "Your ticket for " + ticket.getMovieTitle() + " is confirmed. Seat " + ticket.getSeatNumber() + " has been booked."
+                    "Vé của bạn cho phim " + ticket.getMovieTitle() + " đã được xác nhận. Ghế " + ticket.getSeatNumber() + " đã được đặt."
             );
+            ReminderScheduler.showNow(this, ticket);
             ReminderScheduler.schedule(this, ticket);
-            setProcessingState(false, "Sandbox payment approved.");
-            Toast.makeText(this, "Payment successful. Ticket saved to Firebase.", Toast.LENGTH_LONG).show();
+            setProcessingState(false, "Thanh toán sandbox đã được duyệt.");
+            Toast.makeText(this, "Thanh toán thành công. Vé đã được lưu vào Firebase.", Toast.LENGTH_LONG).show();
 
             Intent intent = new Intent(this, PaymentDetailActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
@@ -305,8 +310,8 @@ public class PaymentActivity extends AppCompatActivity {
     private void saveFailedPayment(String seatNumber, String paymentMethod) {
         String paymentId = databaseReference.child(FirebasePaths.PAYMENTS).push().getKey();
         if (paymentId == null) {
-            setProcessingState(false, "Could not create failed payment record.");
-            Toast.makeText(this, "Could not create payment record.", Toast.LENGTH_SHORT).show();
+            setProcessingState(false, "Không thể tạo bản ghi thanh toán lỗi.");
+            Toast.makeText(this, "Không thể tạo bản ghi thanh toán.", Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -318,22 +323,22 @@ public class PaymentActivity extends AppCompatActivity {
                 userId,
                 null,
                 showtimeId,
-                movieTitle == null ? "Movie" : movieTitle,
-                theaterName == null ? "Theater" : theaterName,
+            movieTitle == null ? "Phim" : movieTitle,
+            theaterName == null ? "Rạp" : theaterName,
                 seatNumber,
                 paymentMethod,
-                "FAILED",
+                "THẤT BẠI",
                 amount,
                 now
         );
 
         databaseReference.child(FirebasePaths.PAYMENTS).child(paymentId).setValue(payment)
                 .addOnCompleteListener(task -> {
-                    setProcessingState(false, "Sandbox payment declined.");
+                    setProcessingState(false, "Thanh toán sandbox bị từ chối.");
                     if (task.isSuccessful()) {
-                        Toast.makeText(this, "Sandbox payment failed. You can retry.", Toast.LENGTH_LONG).show();
+                        Toast.makeText(this, "Thanh toán sandbox thất bại. Bạn có thể thử lại.", Toast.LENGTH_LONG).show();
                     } else {
-                        Toast.makeText(this, "Failed to save payment record.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(this, "Không thể lưu bản ghi thanh toán.", Toast.LENGTH_SHORT).show();
                     }
                 });
     }

@@ -30,8 +30,8 @@ public class TicketAdapter extends RecyclerView.Adapter<TicketAdapter.TicketView
         Ticket ticket = ticketList.get(position);
         holder.movieTitle.setText(ticket.getMovieTitle());
         holder.theaterName.setText(ticket.getTheaterName());
-        holder.time.setText("Time: " + ticket.getTime());
-        holder.seat.setText("Seat: " + ticket.getSeatNumber());
+        holder.time.setText("Giờ: " + ticket.getTime());
+        holder.seat.setText("Ghế: " + ticket.getSeatNumber());
     }
 
     @Override

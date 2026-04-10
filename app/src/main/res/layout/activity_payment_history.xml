@@ -28,7 +28,7 @@
                 style="@style/Widget.Material3.Button.TextButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Back" />
+                android:text="Quay lại" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -37,7 +37,7 @@
                 android:background="@drawable/bg_tag_chip"
                 android:paddingHorizontal="12dp"
                 android:paddingVertical="6dp"
-                android:text="Payments"
+                android:text="Thanh toán"
                 android:textColor="@color/movie_on_surface"
                 android:textSize="12sp"
                 android:textStyle="bold" />
@@ -46,7 +46,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
-                android:text="Payment History"
+                android:text="Lịch sử thanh toán"
                 android:textColor="?attr/colorOnSurface"
                 android:textSize="28sp"
                 android:textStyle="bold" />
@@ -55,7 +55,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="6dp"
-                android:text="Track every completed booking and payment saved to Firebase."
+                android:text="Theo dõi mọi lượt đặt vé và thanh toán đã lưu trong Firebase."
                 android:textColor="?attr/colorOnSurfaceVariant"
                 android:textSize="14sp" />
         </LinearLayout>
@@ -65,7 +65,7 @@
         android:id="@+id/text_empty_payment_history"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="No payment history yet"
+        android:text="Chưa có lịch sử thanh toán"
         android:textColor="?attr/colorOnSurfaceVariant"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"

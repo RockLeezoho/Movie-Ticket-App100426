@@ -30,7 +30,7 @@
                 android:background="@drawable/bg_tag_chip"
                 android:paddingHorizontal="12dp"
                 android:paddingVertical="6dp"
-                android:text="Bookings"
+                android:text="Đặt vé"
                 android:textColor="@color/movie_on_surface"
                 android:textSize="12sp"
                 android:textStyle="bold" />
@@ -40,7 +40,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
-                android:text="My Tickets"
+                android:text="Vé của tôi"
                 android:textColor="?attr/colorOnSurface"
                 android:textSize="28sp"
                 android:textStyle="bold" />
@@ -49,7 +49,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="6dp"
-                android:text="Keep your booked seats and screening details in one place."
+                android:text="Lưu ghế đã đặt và thông tin suất chiếu ở một nơi."
                 android:textColor="?attr/colorOnSurfaceVariant"
                 android:textSize="14sp" />
         </LinearLayout>
@@ -60,7 +60,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:text="You have not booked any tickets yet"
+        android:text="Bạn chưa đặt vé nào"
         android:textColor="?attr/colorOnSurfaceVariant"
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"

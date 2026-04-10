@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         TextView loadingText = new TextView(this);
-        loadingText.setText("Loading demo data...");
+        loadingText.setText("Đang tải dữ liệu mẫu...");
         loadingText.setTextSize(18f);
         loadingText.setPadding(48, 48, 48, 48);
         loadingText.setTextColor(getResources().getColor(android.R.color.darker_gray, getTheme()));

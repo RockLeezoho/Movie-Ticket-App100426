@@ -33,7 +33,7 @@
                     style="@style/Widget.Material3.Button.TextButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Back" />
+                    android:text="Quay lại" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -51,7 +51,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
-                    android:text="Debug Console"
+                    android:text="Bảng điều khiển gỡ lỗi"
                     android:textColor="?attr/colorOnSurface"
                     android:textSize="28sp"
                     android:textStyle="bold" />
@@ -60,7 +60,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="6dp"
-                    android:text="Quickly verify connection state, sign-in status, and how many nodes can actually be read from Firebase."
+                    android:text="Kiểm tra nhanh trạng thái kết nối, đăng nhập và số node có thể đọc từ Firebase."
                     android:textColor="?attr/colorOnSurfaceVariant"
                     android:textSize="14sp" />
 
@@ -70,7 +70,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="18dp"
-                    android:text="Refresh"
+                    android:text="Làm mới"
                     app:backgroundTint="@color/movie_primary" />
 
                 <com.google.android.material.button.MaterialButton
@@ -79,7 +79,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
-                    android:text="Force Seed Demo Data"
+                    android:text="Ép tạo dữ liệu mẫu"
                     app:strokeColor="?attr/colorPrimary" />
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
@@ -105,7 +105,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Status"
+                    android:text="Trạng thái"
                     android:textColor="?attr/colorOnSurface"
                     android:textSize="18sp"
                     android:textStyle="bold" />
@@ -115,7 +115,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
-                    android:text="Connection: checking..."
+                    android:text="Kết nối: đang kiểm tra..."
                     android:textColor="?attr/colorOnSurfaceVariant"
                     android:textSize="14sp" />
 
@@ -124,7 +124,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:text="Auth: checking..."
+                    android:text="Xác thực: đang kiểm tra..."
                     android:textColor="?attr/colorOnSurfaceVariant"
                     android:textSize="14sp" />
 
@@ -133,7 +133,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:text="Database: checking..."
+                    android:text="Cơ sở dữ liệu: đang kiểm tra..."
                     android:textColor="?attr/colorOnSurfaceVariant"
                     android:textSize="14sp" />
             </LinearLayout>
@@ -159,7 +159,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Readable nodes"
+                    android:text="Các node có thể đọc"
                     android:textColor="?attr/colorOnSurface"
                     android:textSize="18sp"
                     android:textStyle="bold" />
@@ -169,7 +169,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
-                    android:text="Movies: -"
+                    android:text="Phim: -"
                     android:textColor="?attr/colorOnSurfaceVariant"
                     android:textSize="14sp" />
 
@@ -178,7 +178,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:text="Theaters: -"
+                    android:text="Rạp: -"
                     android:textColor="?attr/colorOnSurfaceVariant"
                     android:textSize="14sp" />
 
@@ -187,7 +187,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:text="Showtimes: -"
+                    android:text="Suất chiếu: -"
                     android:textColor="?attr/colorOnSurfaceVariant"
                     android:textSize="14sp" />
 
@@ -196,7 +196,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:text="Tickets: -"
+                    android:text="Vé: -"
                     android:textColor="?attr/colorOnSurfaceVariant"
                     android:textSize="14sp" />
 
@@ -205,7 +205,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:text="Payments: -"
+                    android:text="Thanh toán: -"
                     android:textColor="?attr/colorOnSurfaceVariant"
                     android:textSize="14sp" />
             </LinearLayout>

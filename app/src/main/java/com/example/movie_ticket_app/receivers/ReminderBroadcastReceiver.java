@@ -28,7 +28,7 @@ public class ReminderBroadcastReceiver extends BroadcastReceiver {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             NotificationChannel channel = new NotificationChannel(
                     CHANNEL_ID,
-                    "Movie Reminders",
+                        "Nhắc lịch chiếu phim",
                     NotificationManager.IMPORTANCE_DEFAULT
             );
             manager.createNotificationChannel(channel);
@@ -47,8 +47,8 @@ public class ReminderBroadcastReceiver extends BroadcastReceiver {
 
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context, CHANNEL_ID)
                 .setSmallIcon(R.mipmap.ic_launcher)
-                .setContentTitle(title == null ? "Showtime Reminder" : title)
-                .setContentText(message == null ? "Your movie starts soon." : message)
+                .setContentTitle(title == null ? "Nhắc lịch chiếu" : title)
+                .setContentText(message == null ? "Phim của bạn sắp bắt đầu." : message)
                 .setAutoCancel(true)
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT)
                 .setContentIntent(pendingIntent);

@@ -29,7 +29,7 @@
             android:background="@drawable/bg_tag_chip"
             android:paddingHorizontal="12dp"
             android:paddingVertical="6dp"
-            android:text="Movie Ticket"
+            android:text="Vé phim"
             android:textColor="@android:color/white"
             android:textAllCaps="true"
             android:textSize="12sp"
@@ -44,7 +44,7 @@
             android:layout_marginStart="24dp"
             android:layout_marginEnd="24dp"
             android:layout_marginTop="18dp"
-            android:text="Create your account"
+            android:text="Tạo tài khoản của bạn"
             android:textColor="@android:color/white"
             android:textSize="34sp"
             android:textStyle="bold"
@@ -59,7 +59,7 @@
             android:layout_marginStart="24dp"
             android:layout_marginEnd="24dp"
             android:layout_marginTop="8dp"
-            android:text="Make your first booking in a few taps."
+            android:text="Đặt vé đầu tiên chỉ với vài thao tác."
             android:textColor="#DDE3EA"
             android:textSize="15sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -89,7 +89,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Sign up"
+                    android:text="Đăng ký"
                     android:textColor="?attr/colorOnSurface"
                     android:textSize="22sp"
                     android:textStyle="bold" />
@@ -98,7 +98,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="6dp"
-                    android:text="Fill in your details to continue."
+                    android:text="Điền thông tin của bạn để tiếp tục."
                     android:textColor="?attr/colorOnSurfaceVariant"
                     android:textSize="14sp" />
 
@@ -108,7 +108,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
-                    android:hint="Full Name">
+                    android:hint="Họ và tên">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/name_edit_text"
@@ -138,7 +138,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
-                    android:hint="Password"
+                    android:hint="Mật khẩu"
                     app:endIconMode="password_toggle">
 
                     <com.google.android.material.textfield.TextInputEditText
@@ -153,7 +153,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="24dp"
-                    android:text="Register"
+                    android:text="Đăng ký"
                     app:backgroundTint="@color/movie_primary"
                     app:cornerRadius="18dp" />
 
@@ -163,7 +163,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="18dp"
-                    android:text="Already have an account? Login"
+                    android:text="Đã có tài khoản? Đăng nhập"
                     android:textColor="?attr/colorPrimary"
                     android:textSize="14sp"
                     android:textStyle="bold" />

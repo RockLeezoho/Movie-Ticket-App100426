@@ -56,7 +56,7 @@ public class DebugFirebaseActivity extends AppCompatActivity {
         refreshBtn.setOnClickListener(v -> refreshDebugState());
         forceSeedBtn.setOnClickListener(v -> forceSeedDemoData());
 
-        databaseValue.setText("Database: " + FirebaseDb.getDatabaseUrl());
+        databaseValue.setText("CSDL: " + FirebaseDb.getDatabaseUrl());
         attachConnectionListener();
         refreshDebugState();
     }
@@ -76,15 +76,15 @@ public class DebugFirebaseActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 Boolean connected = snapshot.getValue(Boolean.class);
                 if (Boolean.TRUE.equals(connected)) {
-                    connectionValue.setText("Connection: online");
+                    connectionValue.setText("Kết nối: trực tuyến");
                 } else {
-                    connectionValue.setText("Connection: offline");
+                    connectionValue.setText("Kết nối: ngoại tuyến");
                 }
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                connectionValue.setText("Connection: error - " + sanitize(error.getMessage()));
+                connectionValue.setText("Kết nối: lỗi - " + sanitize(error.getMessage()));
             }
         };
         connectionRef.addValueEventListener(connectionListener);
@@ -93,28 +93,28 @@ public class DebugFirebaseActivity extends AppCompatActivity {
     private void refreshDebugState() {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if (user == null) {
-            authValue.setText("Auth: not signed in");
-            ticketsValue.setText("Tickets: sign in required");
-            paymentsValue.setText("Payments: sign in required");
-            loadCollectionCount(FirebasePaths.MOVIES, moviesValue, "Movies");
-            loadCollectionCount(FirebasePaths.THEATERS, theatersValue, "Theaters");
-            loadCollectionCount(FirebasePaths.SHOWTIMES, showtimesValue, "Showtimes");
+            authValue.setText("Xác thực: chưa đăng nhập");
+            ticketsValue.setText("Vé: cần đăng nhập");
+            paymentsValue.setText("Thanh toán: cần đăng nhập");
+            loadCollectionCount(FirebasePaths.MOVIES, moviesValue, "Phim");
+            loadCollectionCount(FirebasePaths.THEATERS, theatersValue, "Rạp");
+            loadCollectionCount(FirebasePaths.SHOWTIMES, showtimesValue, "Suất chiếu");
             return;
         } else {
             String email = user.getEmail();
             String uid = user.getUid();
             String shortUid = uid.length() > 10 ? uid.substring(0, 10) + "..." : uid;
             String userLabel = TextUtils.isEmpty(email) ? shortUid : email + " (" + shortUid + ")";
-            authValue.setText("Auth: signed in as " + userLabel);
+            authValue.setText("Xác thực: đã đăng nhập với " + userLabel);
             user.getIdToken(true).addOnCompleteListener(tokenTask -> {
                 if (!tokenTask.isSuccessful()) {
-                    authValue.setText("Auth: signed in but token refresh failed: " + sanitize(tokenTask.getException() == null ? null : tokenTask.getException().getMessage()));
+                    authValue.setText("Xác thực: đã đăng nhập nhưng làm mới token thất bại: " + sanitize(tokenTask.getException() == null ? null : tokenTask.getException().getMessage()));
                 }
-                loadUserScopedCount(FirebasePaths.TICKETS, user.getUid(), ticketsValue, "Tickets");
-                loadUserScopedCount(FirebasePaths.PAYMENTS, user.getUid(), paymentsValue, "Payments");
-                loadCollectionCount(FirebasePaths.MOVIES, moviesValue, "Movies");
-                loadCollectionCount(FirebasePaths.THEATERS, theatersValue, "Theaters");
-                loadCollectionCount(FirebasePaths.SHOWTIMES, showtimesValue, "Showtimes");
+                loadUserScopedCount(FirebasePaths.TICKETS, user.getUid(), ticketsValue, "Vé");
+                loadUserScopedCount(FirebasePaths.PAYMENTS, user.getUid(), paymentsValue, "Thanh toán");
+                loadCollectionCount(FirebasePaths.MOVIES, moviesValue, "Phim");
+                loadCollectionCount(FirebasePaths.THEATERS, theatersValue, "Rạp");
+                loadCollectionCount(FirebasePaths.SHOWTIMES, showtimesValue, "Suất chiếu");
             });
         }
     }
@@ -124,12 +124,12 @@ public class DebugFirebaseActivity extends AppCompatActivity {
         reference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                targetView.setText(label + ": " + snapshot.getChildrenCount() + " nodes");
+                targetView.setText(label + ": " + snapshot.getChildrenCount() + " node");
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                targetView.setText(label + ": blocked - " + sanitize(error.getMessage()) + " (code " + error.getCode() + ")");
+                targetView.setText(label + ": bị chặn - " + sanitize(error.getMessage()) + " (mã " + error.getCode() + ")");
             }
         });
     }
@@ -139,12 +139,12 @@ public class DebugFirebaseActivity extends AppCompatActivity {
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                targetView.setText(label + ": " + snapshot.getChildrenCount() + " nodes for current user");
+                targetView.setText(label + ": " + snapshot.getChildrenCount() + " node cho người dùng hiện tại");
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                targetView.setText(label + ": blocked - " + sanitize(error.getMessage()) + " (code " + error.getCode() + ")");
+                targetView.setText(label + ": bị chặn - " + sanitize(error.getMessage()) + " (mã " + error.getCode() + ")");
             }
         });
     }
@@ -152,20 +152,20 @@ public class DebugFirebaseActivity extends AppCompatActivity {
     private void forceSeedDemoData() {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if (user == null) {
-            Toast.makeText(this, "Please sign in first.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Vui lòng đăng nhập trước.", Toast.LENGTH_SHORT).show();
             return;
         }
 
         user.getIdToken(true).addOnCompleteListener(tokenTask ->
                 SampleDataSeeder.seedIfNeeded(() -> {
-                    Toast.makeText(this, "Demo data seed triggered.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "Đã kích hoạt tạo dữ liệu mẫu.", Toast.LENGTH_SHORT).show();
                     refreshDebugState();
                 }));
     }
 
     private String sanitize(String message) {
         if (message == null || message.trim().isEmpty()) {
-            return "unknown error";
+            return "lỗi không xác định";
         }
         return message.trim();
     }

@@ -14,7 +14,7 @@ import com.example.movie_ticket_app.R;
 
 public final class BookingNotificationHelper {
     private static final String CHANNEL_ID = "booking_status_channel";
-    private static final String DEFAULT_MESSAGE = "Booking confirmed";
+    private static final String DEFAULT_MESSAGE = "Đặt vé thành công";
 
     private BookingNotificationHelper() {
     }
@@ -34,7 +34,7 @@ public final class BookingNotificationHelper {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             NotificationChannel channel = new NotificationChannel(
                     CHANNEL_ID,
-                    "Booking Updates",
+                    "Thông báo đặt vé",
                     NotificationManager.IMPORTANCE_HIGH
             );
             channel.enableVibration(true);

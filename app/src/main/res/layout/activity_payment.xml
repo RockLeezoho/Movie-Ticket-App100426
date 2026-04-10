@@ -34,7 +34,7 @@
                     android:background="@drawable/bg_tag_chip"
                     android:paddingHorizontal="12dp"
                     android:paddingVertical="6dp"
-                    android:text="Checkout"
+                    android:text="Thanh toán"
                     android:textColor="@color/movie_on_surface"
                     android:textSize="12sp"
                     android:textStyle="bold" />
@@ -46,7 +46,7 @@
                     android:background="@drawable/bg_tag_chip"
                     android:paddingHorizontal="12dp"
                     android:paddingVertical="6dp"
-                    android:text="Sandbox mode"
+                    android:text="Chế độ sandbox"
                     android:textColor="@color/movie_primary"
                     android:textSize="12sp"
                     android:textStyle="bold" />
@@ -56,7 +56,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="14dp"
-                    android:text="Movie Title"
+                    android:text="Tên phim"
                     android:textColor="?attr/colorOnSurface"
                     android:textSize="26sp"
                     android:textStyle="bold" />
@@ -66,7 +66,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="6dp"
-                    android:text="Theater"
+                    android:text="Rạp"
                     android:textColor="?attr/colorOnSurfaceVariant"
                     android:textSize="14sp" />
 
@@ -75,7 +75,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
-                    android:text="Time"
+                    android:text="Giờ chiếu"
                     android:textColor="?attr/colorOnSurfaceVariant"
                     android:textSize="14sp" />
 
@@ -89,7 +89,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="18dp"
-                    android:text="Payment summary"
+                    android:text="Tổng quan thanh toán"
                     android:textColor="?attr/colorOnSurface"
                     android:textSize="18sp"
                     android:textStyle="bold" />
@@ -109,7 +109,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:text="Ready for sandbox payment"
+                    android:text="Sẵn sàng thanh toán sandbox"
                     android:textColor="?attr/colorOnSurfaceVariant"
                     android:textSize="14sp" />
 
@@ -117,7 +117,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="18dp"
-                    android:text="Available seats"
+                    android:text="Ghế còn trống"
                     android:textColor="?attr/colorOnSurface"
                     android:textSize="18sp"
                     android:textStyle="bold" />
@@ -127,7 +127,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:text="Selected seat: none"
+                    android:text="Ghế đã chọn: chưa có"
                     android:textColor="?attr/colorOnSurfaceVariant"
                     android:textSize="14sp" />
 
@@ -151,7 +151,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="18dp"
-                    android:text="Payment method"
+                    android:text="Phương thức thanh toán"
                     android:textColor="?attr/colorOnSurface"
                     android:textSize="18sp"
                     android:textStyle="bold" />
@@ -168,19 +168,19 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:checked="true"
-                        android:text="Sandbox Wallet" />
+                        android:text="Ví sandbox" />
 
                     <com.google.android.material.radiobutton.MaterialRadioButton
                         android:id="@+id/payment_method_card"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Sandbox Card" />
+                        android:text="Thẻ sandbox" />
 
                     <com.google.android.material.radiobutton.MaterialRadioButton
                         android:id="@+id/payment_method_cash"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Sandbox Cash" />
+                        android:text="Tiền mặt sandbox" />
                 </RadioGroup>
 
                 <com.google.android.material.button.MaterialButton
@@ -188,7 +188,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="22dp"
-                    android:text="Pay now"
+                    android:text="Thanh toán ngay"
                     app:backgroundTint="@color/movie_primary"
                     app:cornerRadius="18dp" />
             </LinearLayout>
